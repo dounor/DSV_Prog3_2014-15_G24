@@ -35,5 +35,16 @@ void Layer::update(int delta)
 // Rita samtliga objekt i lagret
 void Layer::render(SDL_Renderer* renderer)
 {
+	// Remove the layers
+	while (!collisionLayers.empty()) {
+		delete collisionLayers.back();
+		collisionLayers.pop_back();
+	}
 
+	// Delete all sprites associated with this layer
+	while (!physSprites.empty())
+	{
+		delete physSprites.back();
+		physSprites.pop_back();
+	}
 }

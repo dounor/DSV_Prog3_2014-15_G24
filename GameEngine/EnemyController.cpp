@@ -37,7 +37,10 @@ void EnemyController::update(int delta, ResourceFactory* factory)
 	}
 
 	if (toRemove != -1)
+	{
+		delete enemies.at(toRemove);
 		enemies.erase(enemies.begin() + toRemove);
+	}
 }
 void EnemyController::render(SDL_Renderer* renderer)
 {
@@ -48,7 +51,10 @@ void EnemyController::render(SDL_Renderer* renderer)
 
 EnemyController::~EnemyController() 
 {
-	enemies.clear();
+	while (!enemies.empty()) {
+		delete enemies.back();
+		enemies.pop_back();
+	}
 }
 
 

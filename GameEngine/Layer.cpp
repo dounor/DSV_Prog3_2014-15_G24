@@ -37,6 +37,12 @@ void Layer::addCollisionLayer(Layer* colLayer)
 	collisionLayers.push_back(colLayer);
 }
 
+bool Layer::collidesWithLayer(PhysicalSprite* sprite) 
+{
+
+	return false;
+}
+
 // Uppdatera samtliga objekt i lagret
 void Layer::update(int delta) 
 {

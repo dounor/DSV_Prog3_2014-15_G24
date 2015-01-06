@@ -9,7 +9,8 @@ public:
 	Collidable(SDL_Rect* rect);
 
 	virtual void onCollision() = 0;
-	bool checkCollision(SDL_Rect& otherRect);
+	bool checkCollision(SDL_Rect* otherRect);
+	SDL_Rect* getCollisionRectangle();
 	void updateCollisionRect(const SDL_Rect* displayRect);
 	~Collidable();
 private:

@@ -13,6 +13,7 @@ public:
 
 	void addCollisionLayer(Layer* layer);
 	void addPhysSprite(PhysicalSprite* sprite);
+	bool collidesWithLayer(PhysicalSprite* sprite);
 	void update(int delta);
 	void render(SDL_Renderer* renderer);
 private:

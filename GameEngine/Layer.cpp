@@ -39,7 +39,11 @@ void Layer::addCollisionLayer(Layer* colLayer)
 
 bool Layer::collidesWithLayer(PhysicalSprite* sprite) 
 {
-
+	for (int i = 0; i < physSprites.size(); ++i) {
+		if (true) {
+			return true;
+		}
+	}
 	return false;
 }
 

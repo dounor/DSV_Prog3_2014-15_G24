@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="Collidable.cpp" />
     <ClCompile Include="EnemyController.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="PhysicalSprite.cpp" />
     <ClCompile Include="Decal.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -92,6 +93,7 @@
   <ItemGroup>
     <ClInclude Include="Collidable.h" />
     <ClInclude Include="EnemyController.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="PhysicalSprite.h" />
     <ClInclude Include="Decal.h" />
     <ClInclude Include="Engine.h" />

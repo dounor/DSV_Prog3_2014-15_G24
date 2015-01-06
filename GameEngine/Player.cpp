@@ -1,5 +1,6 @@
 #include "Player.h"
 
+// A player is a physical sprite that the player can interact with using the keyboard
 Player::Player(int x, int y, int width, int height, double spd, SDL_Texture* img) : PhysicalSprite(x, y, width, height, img), leftHeld(false), rightHeld(false), upHeld(false), downHeld(false), speed(spd) {}
 
 void Player::update(int delta)
@@ -18,12 +19,15 @@ void Player::update(int delta)
 
 	PhysicalSprite::update(delta);
 
+	// Reset the velocity after each loop, we don't want the player to continue moving
+	// forever without interaction from the user
 	velX = 0;
 	velY = 0;
 }
 
 void Player::handleInput(SDL_Event& evt)
 {
+	// Check what button has been held down and react to that information
 	if (evt.type == SDL_KEYDOWN)
 	{
 		// ... Check all events ...

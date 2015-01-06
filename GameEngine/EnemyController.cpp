@@ -1,6 +1,8 @@
 #include "EnemyController.h"
 #include "Engine.h"
 #include <random>
+
+// A simple controller that throws a lot of "enemies" at the player
 EnemyController::EnemyController(int width, int height, double enemySpd, int enemyInt) : boundsWidth(width),
 																						 boundsHeight(height),
 																						 enemySpeed(enemySpd), 

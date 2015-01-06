@@ -12,6 +12,7 @@ public:
 	~Layer();
 
 	void addCollisionLayer(Layer* layer);
+	void addPhysSprite(PhysicalSprite* sprite);
 	void update(int delta);
 	void render(SDL_Renderer* renderer);
 private:

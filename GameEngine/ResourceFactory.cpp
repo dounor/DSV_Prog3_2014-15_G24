@@ -1,12 +1,16 @@
 #include "ResourceFactory.h"
 
+// A class that deals with the resource management of all files in the game engine
 ResourceFactory::ResourceFactory(SDL_Renderer* renderer)
 {
 	setRenderer(renderer);
 }
 
+// Gets an image from a file path and returns a texture of that image
 SDL_Texture* ResourceFactory::getImage(std::string filePath)
 {
+	// Check if we've already retrieved the file before and if that is the
+	// case return it directly
 	if (images[filePath] != NULL)
 		return images[filePath];
 
@@ -44,6 +48,7 @@ void ResourceFactory::setRenderer(SDL_Renderer* renderer)
 	render = renderer;
 }
 
+// Remove all objects that the resource factory has created
 ResourceFactory::~ResourceFactory()
 {
 	typedef std::map<std::string, SDL_Texture*> imgMap;

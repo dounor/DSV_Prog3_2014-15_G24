@@ -16,6 +16,11 @@ Layer::~Layer()
 
 }
 
+void Layer::addPhysSprite(PhysicalSprite* sprite)
+{
+	physSprites.push_back(sprite);
+}
+
 void Layer::addCollisionLayer(Layer* colLayer)
 {
 	collisionLayers.push_back(colLayer);

@@ -79,7 +79,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="Collidable.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="PhysicalSprite.cpp" />
@@ -89,9 +91,12 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceFactory.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SubAction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Collidable.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="EnemyController.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="PhysicalSprite.h" />
@@ -100,6 +105,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceFactory.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SubAction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

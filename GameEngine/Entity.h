@@ -8,7 +8,8 @@
  * An entity is a physical sprite that gets its behaviour from actions.
  * Those actions could be anything from simple movement to more complex patterns.
  */
-class Entity : public PhysicalSprite {
+class Entity : public PhysicalSprite 
+{
 public:
 	Entity(int x, int y, int width, int height, SDL_Texture* img);
 	Entity(int x, int y, int width, int height, int colWidth, int colHeight, SDL_Texture* img);

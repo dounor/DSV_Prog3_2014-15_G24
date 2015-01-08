@@ -4,7 +4,8 @@
 #include <vector>
 #include "ResourceFactory.h"
 #include "PhysicalSprite.h"
-class EnemyController {
+class EnemyController 
+{
 public:
 	EnemyController(int width, int height, double enemySpd, int enemyInt);
 	~EnemyController();

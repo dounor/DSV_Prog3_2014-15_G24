@@ -2,14 +2,16 @@
 
 // A simple class that handles all collision between objects that 
 // is extended by this class
-Collidable::Collidable(int width, int height) : isOwnRect(true) {
+Collidable::Collidable(int width, int height) : isOwnRect(true) 
+{
 	collRect = new SDL_Rect();
 	collRect->x = 0;
 	collRect->y = 0;
 	collRect->w = width;
 	collRect->h = height;
 }
-Collidable::Collidable(SDL_Rect* rect) : isOwnRect(false) {
+Collidable::Collidable(SDL_Rect* rect) : isOwnRect(false)
+{
 	collRect = rect;
 }
 

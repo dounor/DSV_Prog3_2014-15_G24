@@ -2,7 +2,8 @@
 #define PLAYER_H
 #include "PhysicalSprite.h"
 
-class Player : public PhysicalSprite {
+class Player : public PhysicalSprite 
+{
 public:
 	Player(int x, int y, int width, int height, double spd, SDL_Texture* img);
 

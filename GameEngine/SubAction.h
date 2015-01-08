@@ -2,14 +2,19 @@
 #define SUBACTION_H
 
 #include <SDL.h>
+#include "Action.h"
 
 class SubAction
 {
 public:
-	SubAction(Action* parentAction);
-	~SubAction();
-	void update(int delta);
-	void render(SDL_Renderer* renderer)
+	virtual ~SubAction();
+	virtual void update(int delta) = 0;
+	virtual void render(SDL_Renderer* renderer) = 0;
+
+	void setParentAction(Action* action);
+protected:
+	SubAction();
+	Action* parentAction; // The action this subaction is connected to
 };
 
 #endif

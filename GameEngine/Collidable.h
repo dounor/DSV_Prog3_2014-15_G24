@@ -3,7 +3,8 @@
 
 #include <SDL.h>
 
-class Collidable {
+class Collidable 
+{
 public:
 	Collidable(int width, int height);
 	Collidable(SDL_Rect* rect);

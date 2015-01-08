@@ -4,7 +4,8 @@
 PhysicalSprite::PhysicalSprite(int x, int y, int width, int height, SDL_Texture* img) : Decal(x, y, width, height, img), velX(0), velY(0), Collidable(rectangle) {}
 PhysicalSprite::PhysicalSprite(int x, int y, int width, int height, int colWidth, int colHeight, SDL_Texture* img) : Decal(x, y, width, height, img), velX(0), velY(0), Collidable(colWidth, colHeight) {}
 
-void PhysicalSprite::update(int delta) {
+void PhysicalSprite::update(int delta) 
+{
 	rectangle->x += (velX * delta);
 	rectangle->y += (velY * delta);
 

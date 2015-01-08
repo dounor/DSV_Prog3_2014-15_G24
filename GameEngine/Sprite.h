@@ -4,7 +4,8 @@
 #include <SDL.h>
 #include <string>
 
-class Sprite {
+class Sprite 
+{
 public:
 	virtual ~Sprite();
 	virtual void update(int delta) = 0;

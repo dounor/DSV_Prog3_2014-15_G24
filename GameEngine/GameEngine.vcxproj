@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="AngleShot.cpp" />
     <ClCompile Include="Collidable.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EnemyController.cpp" />
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="AngleShot.h" />
     <ClInclude Include="Collidable.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EnemyController.h" />

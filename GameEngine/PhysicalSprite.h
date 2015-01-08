@@ -4,7 +4,8 @@
 #include "Decal.h"
 #include "Collidable.h"
 
-class PhysicalSprite : public Decal, public Collidable {
+class PhysicalSprite : public Decal, public Collidable 
+{
 public:
 	PhysicalSprite(int x, int y, int width, int height, SDL_Texture* img);
 	PhysicalSprite(int x, int y, int width, int height, int colWidth, int colHeight, SDL_Texture* img);

@@ -40,10 +40,9 @@ void Layer::addCollisionLayer(Layer* colLayer)
 bool Layer::collidesWithLayer(PhysicalSprite* sprite) 
 {
 	for (int i = 0; i < physSprites.size(); ++i) {
-		if (true) {
+		if (SDL_HasIntersection(sprite->getRect(), /*Layer() or some such (sorry)*/ ))
 			return true;
 		}
-	}
 	return false;
 }
 

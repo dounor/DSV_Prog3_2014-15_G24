@@ -1,6 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
 
+#include <list>
 #include <vector>
 #include "PhysicalSprite.h"
 
@@ -17,7 +18,7 @@ public:
 	void update(int delta);
 	void render(SDL_Renderer* renderer);
 private:
-	std::vector<PhysicalSprite*> physSprites; // Objekten som finns i lagret
+	std::list<PhysicalSprite*> physSprites; // Objekten som finns i lagret
 	std::vector<Layer*> collisionLayers; // De lager som våra objekt kommer kollidera med
 
 };

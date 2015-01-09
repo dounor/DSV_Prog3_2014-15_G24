@@ -57,3 +57,4 @@ Temporary Items
 *.vcxproj
 GameEngine/GameEngine.vcxproj
 *.opensdf
+Debug/SDL2.dll

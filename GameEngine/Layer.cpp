@@ -30,10 +30,11 @@ void Layer::addCollisionLayer(Layer* colLayer)
 
 bool Layer::collidesWithLayer(PhysicalSprite* sprite) 
 {
-	for (int i = 0; i < physSprites.size(); ++i) {
-		if (physSprites[i]->checkCollision(sprite->getRect()))
+	for (auto it = physSprites.begin(); it != physSprites.end();)
+	{
+		if ((*it)->checkCollision(sprite->getRect()))
 			return true;
-		}
+	}
 	return false;
 }
 

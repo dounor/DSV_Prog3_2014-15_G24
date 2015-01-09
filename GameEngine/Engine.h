@@ -30,7 +30,7 @@ private:
 	bool running = true;
 	int delta = 0;
 	double updateInterval;
-	SDL_Renderer* render;
+	SDL_Renderer* renderer;
 	SDL_Window* window; 
 	std::vector<Layer*> layers;
 	ResourceFactory* resourceFactory;

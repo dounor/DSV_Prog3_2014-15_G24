@@ -14,17 +14,24 @@ Entity::~Entity()
 
 void Entity::addAction(Action* action) 
 {
+	action->setParentEntity(this);
 	actionList.push_back(action);
 }
 
 void Entity::update(int delta)
 {
+	if (actionList.front()->hasEnded()) {
+		delete actionList.front();
+		actionList.pop_front();
+	}
+
+	actionList.front()->update(delta);
 	PhysicalSprite::update(delta);
 }
-void Entity::render(SDL_Renderer* render)
+void Entity::render(SDL_Renderer* renderer)
 {
-
-	PhysicalSprite::render(render);
+	actionList.front()->render(renderer);
+	PhysicalSprite::render(renderer);
 }
 
 void Entity::onCollision()

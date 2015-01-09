@@ -9,7 +9,7 @@ class AngleShot : public SubAction
 {
 public:
 	AngleShot(int degreeToFire, int delayBetweenBullets, double speed, int bltWidth, int bltHeight, SDL_Texture* bltImg, Layer* bltLayer);
-	~AngleShot();
+	~AngleShot() override;
 
 	void render(SDL_Renderer* renderer) override;
 	void update(int delta) override;

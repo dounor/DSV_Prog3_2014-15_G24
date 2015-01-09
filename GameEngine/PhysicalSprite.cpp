@@ -1,4 +1,6 @@
 #include "PhysicalSprite.h"
+#include "Engine.h"
+
 // A sprite that is able to display itself as well as
 // collide with other game objects
 PhysicalSprite::PhysicalSprite(int x, int y, int width, int height, SDL_Texture* img) : Decal(x, y, width, height, img), velX(0), velY(0), Collidable(rectangle) {}
@@ -10,6 +12,15 @@ void PhysicalSprite::update(int delta)
 	rectangle->y += (velY * delta);
 
 	updateCollisionRect(rectangle);
+
+	if (rectangle->x < 0 - rectangle->w - 100)
+		dead = true;
+	if (rectangle->x > Engine::SCR_WIDTH + 100)
+		dead = true;
+	if (rectangle->y < 0 - rectangle->h - 100)
+		dead = true;
+	if (rectangle->y > Engine::SCR_HEIGHT + 100)
+		dead = true;
 
 	Decal::update(delta);
 }

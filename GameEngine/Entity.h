@@ -3,7 +3,7 @@
 
 #include "PhysicalSprite.h"
 #include "Action.h"
-#include <vector>
+#include <deque>
 /*
  * An entity is a physical sprite that gets its behaviour from actions.
  * Those actions could be anything from simple movement to more complex patterns.
@@ -18,12 +18,12 @@ public:
 	void addAction(Action* action);
 
 	void update(int delta) override;
-	void render(SDL_Renderer* render) override;
+	void render(SDL_Renderer* renderer) override;
 
 	void onCollision() override;
 
 protected:
-	std::vector<Action*> actionList;
+	std::deque<Action*> actionList;
 };
 
 

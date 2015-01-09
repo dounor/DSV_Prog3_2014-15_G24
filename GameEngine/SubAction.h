@@ -2,12 +2,13 @@
 #define SUBACTION_H
 
 #include <SDL.h>
-#include "Action.h"
+
+class Action;
 
 class SubAction
 {
 public:
-	virtual ~SubAction();
+	virtual ~SubAction() {};
 	virtual void update(int delta) = 0;
 	virtual void render(SDL_Renderer* renderer) = 0;
 

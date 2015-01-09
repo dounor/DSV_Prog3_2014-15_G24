@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include "EnemyController.h"
 #include <iostream>
 #include <chrono>
 
@@ -22,10 +21,10 @@ Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 
 		exit(1);
 	}
 
-	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
 
 	//Verify that the game renderer was correctly created, if not throw an error and exit the application
-	if (render == NULL)
+	if (renderer == NULL)
 	{
 		std::cout << "Renderer to game window could not be created! " << SDL_GetError();
 		SDL_DestroyWindow(window);
@@ -34,7 +33,7 @@ Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 
 	}
 
 	// Create a new Resource Factory
-	resourceFactory = new ResourceFactory(render);
+	resourceFactory = new ResourceFactory(renderer);
 
 	// Set the current delta time to 0
 	delta = 0;
@@ -61,9 +60,6 @@ void Engine::runGame()
 	// Create an event object
 	SDL_Event evt;
 
-	// Create the enemy controller
-	EnemyController* enemyController = new EnemyController(SCR_WIDTH, SCR_HEIGHT, 0.4, 2);
-
 	while (running)
 	{
 		// Get the current time in millis
@@ -87,30 +83,23 @@ void Engine::runGame()
 			for (auto it : layers)
 				it->update(delta);
 
-			enemyController->update(delta, resourceFactory);
-
 			// TODO: Might change this to 0 instead (we'll see...)
 			delta = 0;
 		}
 
 
 		// ... Render ...
-		SDL_RenderClear(render);
+		SDL_RenderClear(renderer);
 
 		//Render all game objects here
 		for (auto it : layers)
-			it->update(delta);
+			it->render(renderer);
 
-		enemyController->render(render);
-
-		SDL_RenderPresent(render);
+		SDL_RenderPresent(renderer);
 
 		// Subtract current time with the time it was at the beginning of this function cycle
 		delta += getCurrentMillis() - curCycleTime;
 	}
-
-	delete player;
-	delete enemyController;
 }
 
 /*
@@ -126,8 +115,13 @@ bool Engine::checkCollision(PhysicalSprite* firstSprite, PhysicalSprite* secondS
 // Destroy the Game Engine
 Engine::~Engine()
 {
+	while (!layers.empty()) {
+		delete layers.back();
+		layers.pop_back();
+	}
+
 	delete resourceFactory;
-	SDL_DestroyRenderer(render);
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }

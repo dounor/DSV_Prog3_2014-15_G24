@@ -4,13 +4,12 @@
 #include<SDL.h>
 #include <vector>
 #include "SubAction.h"
-#include "Entity.h"
 
+class Entity;
 class Action 
 {
 public:
-	Action(Entity* entity);
-	Action(Entity* entity, int hp);
+	Action();
 	~Action();
 
 	void update(int delta);
@@ -18,8 +17,13 @@ public:
 	void addSubAction(SubAction* subAction);
 
 	Entity* getParentEntity();
+	void setParentEntity(Entity* ent);
+
+	bool hasEnded();
+	void setEnded(bool end);
 	
 protected:
+	bool ended;
 	Entity* parentEntity;
 	std::vector<SubAction*> subActions;
 	int health;

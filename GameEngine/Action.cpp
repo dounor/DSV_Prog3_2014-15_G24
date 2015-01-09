@@ -1,7 +1,6 @@
 #include "Action.h"
 
-Action::Action(Entity* entity) : parentEntity(entity), health(1) {}
-Action::Action(Entity* entity, int hp) : parentEntity(entity), health(hp) {}
+Action::Action() : ended(false) {}
 
 Action::~Action()
 {
@@ -13,25 +12,40 @@ Action::~Action()
 
 void Action::update(int delta)
 {
-	for (int i = 0; i < subActions.size(); ++i)
-	{
+	for (unsigned int i = 0; i < subActions.size(); ++i) {
 		subActions[i]->update(delta);
 	}
 }
 void Action::render(SDL_Renderer* renderer)
 {
-	for (int i = 0; i < subActions.size(); ++i)
-	{
+	for (unsigned int i = 0; i < subActions.size(); ++i) {
 		subActions[i]->render(renderer);
 	}
 }
 
 void Action::addSubAction(SubAction* subAction)
 {
+	subAction->setParentAction(this);
+	subActions.push_back(subAction);
 	// Add a sub action to the list and send this action as the parent action!
 }
 
-Entity* getParentEntity()
+Entity* Action::getParentEntity()
 {
 	return parentEntity;
+}
+
+void Action::setParentEntity(Entity* ent)
+{
+	parentEntity = ent;
+}
+
+bool Action::hasEnded()
+{
+	return ended;
+}
+
+void Action::setEnded(bool end)
+{
+	ended = end;
 }

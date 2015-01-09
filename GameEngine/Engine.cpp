@@ -40,14 +40,26 @@ Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 
 	delta = 0;
 }
 
+void Engine::addLayer(Layer* layer)
+{
+	layers.push_back(layer);
+}
+
+void Engine::setPlayer(Player* ply)
+{
+	player = ply;
+}
+
+ResourceFactory* Engine::getResourceFactory()
+{
+	return resourceFactory;
+}
+
 void Engine::runGame()
 {
 	
 	// Create an event object
 	SDL_Event evt;
-
-	// Create the player object
-	Player* player = new Player(0, 0, 32, 32, 0.3, resourceFactory->getImage("C:\\Users\\Douglas\\Desktop\\head.bmp"));
 
 	// Create the enemy controller
 	EnemyController* enemyController = new EnemyController(SCR_WIDTH, SCR_HEIGHT, 0.4, 2);
@@ -72,7 +84,9 @@ void Engine::runGame()
 			}
 
 			// ... Update all game objects here ...
-			player->update(delta);
+			for (auto it : layers)
+				it->update(delta);
+
 			enemyController->update(delta, resourceFactory);
 
 			// TODO: Might change this to 0 instead (we'll see...)
@@ -84,7 +98,9 @@ void Engine::runGame()
 		SDL_RenderClear(render);
 
 		//Render all game objects here
-		player->render(render);
+		for (auto it : layers)
+			it->update(delta);
+
 		enemyController->render(render);
 
 		SDL_RenderPresent(render);

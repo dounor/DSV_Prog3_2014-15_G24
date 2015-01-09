@@ -93,6 +93,7 @@
     <ClCompile Include="ResourceFactory.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SubAction.cpp" />
+    <ClCompile Include="WaveSpawn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="ResourceFactory.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SubAction.h" />
+    <ClInclude Include="WaveSpawn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,4 +20,6 @@ const double PhysicalSprite::getVelY() { return velY; }
 void PhysicalSprite::setVelX(const double x) { velX = x; }
 void PhysicalSprite::setVelY(const double y) { velY = y; }
 
+bool PhysicalSprite::isDead() { return dead; }
+
 void PhysicalSprite::onCollision() { /*Does nothing (default behaviour)*/ }

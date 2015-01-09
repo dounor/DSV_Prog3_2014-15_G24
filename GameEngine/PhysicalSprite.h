@@ -13,12 +13,15 @@ public:
 	const double getVelX();
 	const double getVelY();
 
+	bool isDead();
+
 	void setVelX(const double x);
 	void setVelY(const double y);
 
 	void update(int delta) override;
 	void onCollision() override;
 protected:
+	bool dead = false;
 	double velX;
 	double velY;
 };

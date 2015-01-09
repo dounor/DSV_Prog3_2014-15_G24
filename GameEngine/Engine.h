@@ -28,7 +28,7 @@ public:
 
 private:
 	bool running = true;
-	int delta = 0;
+	unsigned int delta = 0;
 	double updateInterval;
 	SDL_Renderer* renderer;
 	SDL_Window* window; 

@@ -1,6 +1,5 @@
 #include "Engine.h"
 #include <iostream>
-#include <chrono>
 
 const int Engine::SCR_WIDTH = 640;
 const int Engine::SCR_HEIGHT = 480;
@@ -63,7 +62,7 @@ void Engine::runGame()
 	while (running)
 	{
 		// Get the current time in millis
-		unsigned long curCycleTime = getCurrentMillis();
+		unsigned int curCycleTime = SDL_GetTicks();
 
 		// ... Update ...
 		while (delta >= updateInterval)
@@ -81,10 +80,10 @@ void Engine::runGame()
 
 			// ... Update all game objects here ...
 			for (auto it : layers)
-				it->update(delta);
+				it->update(updateInterval);
 
-			// TODO: Might change this to 0 instead (we'll see...)
-			delta = 0;
+			// Reduce the delta with a interval amount
+			delta -= updateInterval;
 		}
 
 
@@ -98,7 +97,7 @@ void Engine::runGame()
 		SDL_RenderPresent(renderer);
 
 		// Subtract current time with the time it was at the beginning of this function cycle
-		delta += getCurrentMillis() - curCycleTime;
+		delta += SDL_GetTicks() - curCycleTime;
 	}
 }
 
@@ -126,8 +125,8 @@ Engine::~Engine()
 	SDL_Quit();
 }
 
-// Return how many milliseconds that has elapsed since epoch
-unsigned long Engine::getCurrentMillis() {
+// Return how many milliseconds that has elapsed since epoch XX NO LONGER NEEDED DUE TO SDL_GetTicks()
+/*unsigned long Engine::getCurrentMillis() {
 	return std::chrono::duration_cast<std::chrono::milliseconds>
 		(std::chrono::system_clock::now().time_since_epoch()).count();
-}
+}*/ 

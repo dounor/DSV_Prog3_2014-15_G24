@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Engine.h"
 
 // A player is a physical sprite that the player can interact with using the keyboard
 Player::Player(int x, int y, int width, int height, double spd, SDL_Texture* img) : PhysicalSprite(x, y, width, height, img), leftHeld(false), rightHeld(false), upHeld(false), downHeld(false), speed(spd) {}
@@ -18,6 +19,16 @@ void Player::update(int delta)
 		velY += speed;
 
 	PhysicalSprite::update(delta);
+
+	// Make the player stay within the game window
+	if (rectangle->x < 0)
+		rectangle->x = 0;
+	if (rectangle->x > Engine::SCR_WIDTH - rectangle->w)
+		rectangle->x = Engine::SCR_WIDTH - rectangle->w;
+	if (rectangle->y < 0)
+		rectangle->y = 0;
+	if (rectangle->y > Engine::SCR_HEIGHT - rectangle->w)
+		rectangle->y = Engine::SCR_HEIGHT - rectangle->w;
 
 	// Reset the velocity after each loop, we don't want the player to continue moving
 	// forever without interaction from the user
@@ -70,8 +81,7 @@ void Player::handleInput(SDL_Event& evt)
 
 }
 
-/*
-void Player::onDeath()
+void Player::onCollision()
 {
-
-}*/
+	dead = true; // TODO: change this!
+}

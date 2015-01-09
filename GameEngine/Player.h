@@ -9,6 +9,7 @@ public:
 
 	void update(int delta) override;
 	void handleInput(SDL_Event& evt);
+	void onCollision() override;
 	//virtual void onDeath();
 private:
 	int lives = 3;

@@ -6,10 +6,12 @@
 #include "SubAction.h"
 
 class Entity;
+
 class Action 
 {
 public:
 	Action();
+	Action(int hp);
 	~Action();
 
 	void update(int delta);
@@ -21,6 +23,8 @@ public:
 
 	bool hasEnded();
 	void setEnded(bool end);
+
+	void onCollision();
 	
 protected:
 	bool ended;

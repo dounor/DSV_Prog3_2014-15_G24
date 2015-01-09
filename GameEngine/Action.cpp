@@ -1,6 +1,9 @@
 #include "Action.h"
 
-Action::Action() : ended(false) {}
+const int DAMAGE_PER_SHOT = 50;
+
+Action::Action() : ended(false), health(1) {}
+Action::Action(int hp) : ended(false), health(hp) {}
 
 Action::~Action()
 {
@@ -48,4 +51,13 @@ bool Action::hasEnded()
 void Action::setEnded(bool end)
 {
 	ended = end;
+}
+
+void Action::onCollision()
+{
+	health -= DAMAGE_PER_SHOT;
+
+	if (health <= 0) {
+		ended = true;
+	}
 }

@@ -19,30 +19,30 @@ SDL_Rect* Collidable::getCollisionRectangle() { return collRect; }
 
 // We could use SDL_HasIntersection to do our collision
 // check, but we've decided to create a simple one ourselves
-bool Collidable::checkCollision(SDL_Rect* otherRect) 
+bool Collidable::checkCollision(const SDL_Rect& otherRect) 
 {
 	// Check if any of our rect sides is outside of the other rect
 	// If any of them are then we are not intersecting the other rect
-	if ((collRect->y + collRect->h) <= otherRect->y)
+	if ((collRect->y + collRect->h) <= otherRect.y)
 		return false;
 
-	if (collRect->y >= (otherRect->y + otherRect->h))
+	if (collRect->y >= (otherRect.y + otherRect.h))
 		return false;
 
-	if ((collRect->x + collRect->w) <= otherRect->x)
+	if ((collRect->x + collRect->w) <= otherRect.x)
 		return false;
 
-	if (collRect->x >= (otherRect->x + otherRect->w))
+	if (collRect->x >= (otherRect.x + otherRect.w))
 		return false;
 
 	return true;
 }
 
-void Collidable::updateCollisionRect(const SDL_Rect* displayRect)
+void Collidable::updateCollisionRect(const SDL_Rect& displayRect)
 {
 	if (isOwnRect == false) {
-		int dispCenterX = displayRect->x + (displayRect->w / 2);
-		int dispCenterY = displayRect->y + (displayRect->h / 2);
+		int dispCenterX = displayRect.x + (displayRect.w / 2);
+		int dispCenterY = displayRect.y + (displayRect.h / 2);
 
 		collRect->x = dispCenterX - (collRect->w / 2);
 		collRect->y = dispCenterY - (collRect->h / 2);

@@ -17,14 +17,14 @@ AngleShot::AngleShot(int degreeToFire, int delayBetweenBullets, double speed,
 }
 AngleShot::~AngleShot() {}
 
-void AngleShot::render(SDL_Renderer* renderer) { /* Snazzy bullet effects? */}
+void AngleShot::render(SDL_Renderer* renderer) {/* Snazzy bullet effects? */}
 void AngleShot::update(int delta)
 {
 	currentTime += delta;
 
 	if (currentTime >= delay) {
-		SDL_Rect* entRect = parentAction->getParentEntity()->getRect();
-		PhysicalSprite* spr = new PhysicalSprite((entRect->x + entRect->w / 2), (entRect->y + entRect->h), bulletWidth, bulletHeight, bulletImage);
+		const SDL_Rect& entRect = getParentAction().getParentEntity().getRect();
+		PhysicalSprite* spr = new PhysicalSprite((entRect.x + entRect.w / 2), (entRect.y + entRect.h), bulletWidth, bulletHeight, bulletImage);
 		spr->setVelX(velX);
 		spr->setVelY(velY);
 

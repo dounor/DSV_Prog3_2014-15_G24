@@ -3,7 +3,7 @@
 
 #include "PhysicalSprite.h"
 #include "Action.h"
-#include <deque>
+#include <queue>
 /*
  * An entity is a physical sprite that gets its behaviour from actions.
  * Those actions could be anything from simple movement to more complex patterns.
@@ -22,8 +22,11 @@ public:
 
 	void onCollision() override;
 
+	void setPos(int x, int y);
+
 protected:
-	std::deque<Action*> actionList;
+	bool currentActionStarted;
+	std::queue<Action*> actionList;
 };
 
 

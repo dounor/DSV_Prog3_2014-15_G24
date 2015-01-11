@@ -6,3 +6,8 @@ void SubAction::setParentAction(Action* action)
 {
 	parentAction = action;
 }
+
+Action& SubAction::getParentAction()
+{
+	return *parentAction;
+}

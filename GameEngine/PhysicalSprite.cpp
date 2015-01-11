@@ -11,7 +11,7 @@ void PhysicalSprite::update(int delta)
 	rectangle->x += (velX * delta);
 	rectangle->y += (velY * delta);
 
-	updateCollisionRect(rectangle);
+	updateCollisionRect(*rectangle);
 
 	if (rectangle->x < 0 - rectangle->w - 100)
 		dead = true;

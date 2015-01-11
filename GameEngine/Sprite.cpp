@@ -1,5 +1,5 @@
 #include "Sprite.h"
-Sprite::Sprite(int x, int y, int width, int height, SDL_Texture* img) : image(img) 
+Sprite::Sprite(int x, int y, int width, int height, SDL_Texture* img) : image(img)
 {
 	rectangle = new SDL_Rect();
 
@@ -9,9 +9,9 @@ Sprite::Sprite(int x, int y, int width, int height, SDL_Texture* img) : image(im
 	rectangle->h = height;
 }
 
-SDL_Rect* Sprite::getRect()
+const SDL_Rect& Sprite::getRect()
 {
-	return rectangle;
+	return *rectangle;
 }
 
 Sprite::~Sprite()

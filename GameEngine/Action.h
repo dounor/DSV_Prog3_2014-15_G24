@@ -14,11 +14,13 @@ public:
 	Action(int hp);
 	~Action();
 
+	void init();
+
 	void update(int delta);
 	void render(SDL_Renderer* renderer);
 	void addSubAction(SubAction* subAction);
 
-	Entity* getParentEntity();
+	Entity& getParentEntity();
 	void setParentEntity(Entity* ent);
 
 	bool hasEnded();

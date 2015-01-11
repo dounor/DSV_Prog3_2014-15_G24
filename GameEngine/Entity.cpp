@@ -4,7 +4,7 @@
 /* A entity is a game object with a list of actions
  * and subactions that the game object performs.
  */
-Entity::Entity(int x, int y, int width, int height, SDL_Texture* img) : PhysicalSprite(x, y, width, height, img) {}
+Entity::Entity(int x, int y, int width, int height, SDL_Texture* img) : PhysicalSprite(x, y, width, height, img), currentActionStarted(false){}
 
 // If you want to specify a separate collision box for the entity
 Entity::Entity(int x, int y, int width, int height, int colWidth, int colHeight, SDL_Texture* img) : PhysicalSprite(x, y, width, height, colWidth, colHeight, img) {}
@@ -24,7 +24,6 @@ void Entity::addAction(Action* action)
 
 void Entity::update(int delta)
 {
-	
 	// If an action has ended, delete that action and continue with the next one.
 	if (actionList.front()->hasEnded()) {
 		delete actionList.front();
@@ -32,10 +31,20 @@ void Entity::update(int delta)
 	}
 	
 	// If no action is left in this entity it is dead
-	if (actionList.empty())
+	if (actionList.empty()) {
 		dead = true;
-	else
+	} else {
+		// Initiate the next action in the list if it has not been started
+		if (!currentActionStarted)
+			if (!actionList.empty()) {
+				actionList.front()->init();
+				currentActionStarted = true;
+			}
+
+		// update the action
 		actionList.front()->update(delta);
+	}
+		
 
 	PhysicalSprite::update(delta);
 }
@@ -45,6 +54,12 @@ void Entity::render(SDL_Renderer* renderer)
 		actionList.front()->render(renderer);
 	
 	PhysicalSprite::render(renderer);
+}
+
+void Entity::setPos(int x, int y)
+{
+	rectangle->x = x;
+	rectangle->y = y;
 }
 
 void Entity::onCollision()

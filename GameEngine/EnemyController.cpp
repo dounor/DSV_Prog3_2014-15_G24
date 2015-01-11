@@ -22,17 +22,17 @@ void EnemyController::update(int delta, ResourceFactory* factory)
 
 	int toRemove = -1;
 
-	for (int i = 0; i < enemies.size(); ++i) {
+	for (unsigned int i = 0; i < enemies.size(); ++i) {
 		PhysicalSprite* enemy = enemies[i];
 		enemy->update(delta);
 		// Check if the object is still within bounds
-		if (enemy->getRect()->x < 0 - enemy->getRect()->w)
+		if (enemy->getRect().x < 0 - enemy->getRect().w)
 			toRemove = i;
-		if (enemy->getRect()->x > Engine::SCR_WIDTH)
+		if (enemy->getRect().x > Engine::SCR_WIDTH)
 			toRemove = i;
-		if (enemy->getRect()->y < 0 - enemy->getRect()->h)
+		if (enemy->getRect().y < 0 - enemy->getRect().h)
 			toRemove = i;
-		if (enemy->getRect()->y > Engine::SCR_HEIGHT)
+		if (enemy->getRect().y > Engine::SCR_HEIGHT)
 			toRemove = i;
 	}
 
@@ -44,7 +44,7 @@ void EnemyController::update(int delta, ResourceFactory* factory)
 }
 void EnemyController::render(SDL_Renderer* renderer)
 {
-	for (int i = 0; i < enemies.size(); ++i) {
+	for (unsigned int i = 0; i < enemies.size(); ++i) {
 		enemies[i]->render(renderer);
 	}
 }

@@ -13,6 +13,13 @@ Action::~Action()
 	}
 }
 
+void Action::init()
+{
+	for (unsigned int i = 0; i < subActions.size(); ++i) {
+		subActions[i]->init();
+	}
+}
+
 void Action::update(int delta)
 {
 	for (unsigned int i = 0; i < subActions.size(); ++i) {
@@ -33,9 +40,9 @@ void Action::addSubAction(SubAction* subAction)
 	// Add a sub action to the list and send this action as the parent action!
 }
 
-Entity* Action::getParentEntity()
+Entity& Action::getParentEntity()
 {
-	return parentEntity;
+	return *parentEntity;
 }
 
 void Action::setParentEntity(Entity* ent)

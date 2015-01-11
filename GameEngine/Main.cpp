@@ -3,6 +3,7 @@
 #include "Action.h"
 #include "AngleShot.h"
 #include "ResourceFactory.h"
+#include "BezierMovement.h"
 
 int main(int argc, char** argv) 
 {
@@ -18,7 +19,11 @@ int main(int argc, char** argv)
 	Action* act = new Action(200);
 	AngleShot* angle = new AngleShot(90, 300, 0.50, 20, 20, engine->getResourceFactory()->getImage("C:\\Users\\Dogge\\Desktop\\head.bmp"), enemyLayer);
 
+	BezierMovement* bez = new BezierMovement(300, 200, 100, 450, 2);
+	
+
 	act->addSubAction(angle);
+	act->addSubAction(bez);
 	ent->addAction(act);
 
 	// Add to playerLayer

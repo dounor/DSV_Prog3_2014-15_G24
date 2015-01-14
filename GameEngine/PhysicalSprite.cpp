@@ -9,11 +9,11 @@ PhysicalSprite::PhysicalSprite(int x, int y, int width, int height, int colWidth
 void PhysicalSprite::update(int delta) 
 {
 	// Update the position
-	rectangle->x += (velX * delta);
-	rectangle->y += (velY * delta);
+	rectangle->x += (double)(velX * delta);
+	rectangle->y += (double)(velY * delta);
 
 	// Update the collision rectangle
-	updateCollisionRect(*rectangle);
+	updateCollisionRect(rectangle);
 
 	// Verify that the sprite is not out of bounds
 	if (rectangle->x < 0 - rectangle->w - 100)

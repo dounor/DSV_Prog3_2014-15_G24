@@ -13,7 +13,6 @@ public:
 	void render(SDL_Renderer* renderer) override;
 	void handleInput(SDL_Event& evt);
 	void onCollision() override;
-	//virtual void onDeath();
 private:
 	unsigned int score;
 	bool invisible;

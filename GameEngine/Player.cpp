@@ -104,7 +104,7 @@ void Player::handleInput(SDL_Event& evt)
 void Player::render(SDL_Renderer* renderer)
 {
 	// Set the score display
-	SDL_Surface* scoreMsg = TTF_RenderText_Solid(fnt, ("Score: " + std::to_string(score)).c_str(), defaultColor);
+	SDL_Surface* scoreMsg = TTF_RenderText_Solid(fnt, ("Score: " + std::to_string(score/100)).c_str(), defaultColor);
 	SDL_Texture* texScoreMsg = SDL_CreateTextureFromSurface(renderer, scoreMsg);
 
 	SDL_FreeSurface(scoreMsg);

@@ -26,12 +26,13 @@ void Entity::addAction(Action* action)
 void Entity::update(int delta)
 {
 	// If an action has ended, delete that action and continue with the next one.
-	if (actionList.front()->hasEnded()) {
-		delete actionList.front();
-		actionList.pop();
-		currentActionStarted = false;
+	if (actionList.empty() != true) {
+		if (actionList.front()->hasEnded()) {
+			delete actionList.front();
+			actionList.pop();
+			currentActionStarted = false;
+		}
 	}
-	
 	// If no action is left in this entity it is dead
 	if (actionList.empty()) {
 		dead = true;

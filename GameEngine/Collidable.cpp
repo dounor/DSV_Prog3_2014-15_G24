@@ -39,11 +39,11 @@ bool Collidable::checkCollision(const SDL_Rect& otherRect)
 }
 
 // Update the position of the collision rectangle (if it is not shared with the PhysicalSprite)
-void Collidable::updateCollisionRect(const SDL_Rect& displayRect)
+void Collidable::updateCollisionRect(const SDL_Rect* displayRect)
 {
-	if (isOwnRect == false) {
-		int dispCenterX = displayRect.x + (displayRect.w / 2);
-		int dispCenterY = displayRect.y + (displayRect.h / 2);
+	if (isOwnRect == true) {
+		int dispCenterX = displayRect->x + (displayRect->w / 2);
+		int dispCenterY = displayRect->y + (displayRect->h / 2);
 
 		collRect->x = dispCenterX - (collRect->w / 2);
 		collRect->y = dispCenterY - (collRect->h / 2);

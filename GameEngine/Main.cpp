@@ -26,8 +26,9 @@ int main(int argc, char** argv)
 	{
 		Action* act = new Action(200);
 		BezierMovement* bez = new BezierMovement(std::rand()%640, std::rand()%480, std::rand()%640, std::rand()%480, 1);
-
+		AngleShot* shot = new AngleShot(0, 400, 0.21, 20, 20, engine->getResourceFactory()->getImage("happy.png"), enemyLayer);
 		act->addSubAction(bez);
+		act->addSubAction(shot);
 		ent->addAction(act);
 	}
 

@@ -2,6 +2,7 @@
 #define ENGINE_H
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <string>
 #include <vector>
 #include "ResourceFactory.h"
@@ -28,7 +29,7 @@ public:
 
 private:
 	bool running = true;
-	unsigned int delta = 0;
+	unsigned int delta;
 	double updateInterval;
 	SDL_Renderer* renderer;
 	SDL_Window* window; 

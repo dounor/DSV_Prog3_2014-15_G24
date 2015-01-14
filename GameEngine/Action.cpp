@@ -37,7 +37,6 @@ void Action::addSubAction(SubAction* subAction)
 {
 	subAction->setParentAction(this);
 	subActions.push_back(subAction);
-	// Add a sub action to the list and send this action as the parent action!
 }
 
 Entity& Action::getParentEntity()

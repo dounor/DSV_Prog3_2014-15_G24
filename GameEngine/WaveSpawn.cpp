@@ -3,6 +3,8 @@
 #include "Layer.h"
 #include "Entity.h"
 
+/* A class that spawns a wave of enemies by sending them to an active layer
+ */
 WaveSpawn::WaveSpawn(int waitTime, Layer& toLayer) :waitUntilSpawn(waitTime), layerToSendWave(toLayer), currentTime(0), sentWave(false) {}
 WaveSpawn::~WaveSpawn()
 {

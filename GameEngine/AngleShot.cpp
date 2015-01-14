@@ -3,6 +3,7 @@
 #include "SubAction.h"
 #include <math.h>
 
+/* A simple shot that shoots bullets in a certain angle */
 AngleShot::AngleShot(int degreeToFire, int delayBetweenBullets, double speed, 
 					 int bltWidth, int bltHeight, SDL_Texture* bltImg, Layer* bltLayer) : delay(delayBetweenBullets), 
 																						  bulletWidth(bltWidth), 

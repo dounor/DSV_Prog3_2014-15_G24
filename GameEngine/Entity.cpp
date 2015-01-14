@@ -28,6 +28,7 @@ void Entity::update(int delta)
 	if (actionList.front()->hasEnded()) {
 		delete actionList.front();
 		actionList.pop();
+		currentActionStarted = false;
 	}
 	
 	// If no action is left in this entity it is dead

@@ -4,7 +4,7 @@
 const int Engine::SCR_WIDTH = 640;
 const int Engine::SCR_HEIGHT = 480;
 
-Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 / updatesPerSec)
+Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 / updatesPerSec), delta(0)
 {
 	// Try to initialize SDL, if not possible throw an error and exit the application
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -18,6 +18,18 @@ Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 
 		std::cout << "Game window could not be created! " << SDL_GetError();
 		SDL_Quit();
 		exit(1);
+	}
+	else
+	{
+		//Initialize PNG loading  
+		if( !( IMG_Init( IMG_INIT_PNG ) & IMG_INIT_PNG ) ) { 
+			std::cout << "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError(); 
+		}
+	}
+
+	//Initialize SDL_ttf 
+	if( TTF_Init() == -1 ) { 
+		std::cout << "SDL_TTF could not initialize! SDL_image Error: %s\n", TTF_GetError();
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
@@ -90,10 +102,11 @@ void Engine::runGame()
 		// ... Render ...
 		SDL_RenderClear(renderer);
 
-		//Render all game objects here
+		// Render all game objects here
 		for (auto it : layers)
 			it->render(renderer);
 
+		// Present all objects to the window
 		SDL_RenderPresent(renderer);
 
 		// Subtract current time with the time it was at the beginning of this function cycle
@@ -122,6 +135,8 @@ Engine::~Engine()
 	delete resourceFactory;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 }
 

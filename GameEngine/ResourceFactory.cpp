@@ -1,5 +1,5 @@
 #include "ResourceFactory.h"
-
+#include <SDL_image.h>
 // A class that deals with the resource management of all files in the game engine
 ResourceFactory::ResourceFactory(SDL_Renderer* renderer)
 {
@@ -18,10 +18,10 @@ SDL_Texture* ResourceFactory::getImage(std::string filePath)
 	SDL_Texture* newTexture = NULL;
 
 	//Load a BMP from the specified path
-	SDL_Surface* loadedSurface = SDL_LoadBMP(filePath.c_str());
+	SDL_Surface* loadedSurface = IMG_Load(filePath.c_str());
 	if (loadedSurface == NULL)
 	{
-		printf("Couldn't load image %s! SDL_image Error: %s\n", filePath.c_str(), SDL_GetError());
+		printf("Couldn't load image %s! SDL_image Error: %s\n", filePath.c_str(), IMG_GetError());
 		return NULL;
 	}
 	else

@@ -2,10 +2,29 @@
 #include "Engine.h"
 
 // A player is a physical sprite that the player can interact with using the keyboard
-Player::Player(int x, int y, int width, int height, double spd, SDL_Texture* img) : PhysicalSprite(x, y, width, height, img), leftHeld(false), rightHeld(false), upHeld(false), downHeld(false), speed(spd) {}
+Player::Player(int x, int y, int width, int height, double spd, SDL_Texture* img) : score(0), invisible(false), PhysicalSprite(x, y, width, height, img), leftHeld(false), rightHeld(false), upHeld(false), downHeld(false), speed(spd) 
+{
+	fnt = TTF_OpenFont("tuffy.ttf", 22); // Load a font into fnt
+
+	defaultColor = { 255, 255, 255 }; // White is the default color
+	scoreRectangle.x = 150;
+	scoreRectangle.y = 330;
+	scoreRectangle.w = 300;
+	scoreRectangle.h = 200;
+}
+
+Player::~Player()
+{
+	TTF_CloseFont(fnt);
+}
 
 void Player::update(int delta)
 {
+	// Update score
+	if (invisible != true)
+		score += delta;
+	// Check all movement bools and set the velocity to the
+	// direction held
 	if (leftHeld)
 		velX -= speed;
 
@@ -81,7 +100,21 @@ void Player::handleInput(SDL_Event& evt)
 
 }
 
+void Player::render(SDL_Renderer* renderer)
+{
+	// Set the score display
+	SDL_Surface* scoreMsg = TTF_RenderText_Solid(fnt, ("Score: " + std::to_string(score)).c_str(), defaultColor);
+	SDL_Texture* texScoreMsg = SDL_CreateTextureFromSurface(renderer, scoreMsg);
+
+	SDL_FreeSurface(scoreMsg);
+	SDL_RenderCopy(renderer, texScoreMsg, NULL, &scoreRectangle);
+	SDL_DestroyTexture(texScoreMsg);
+
+	if (invisible != true)
+		Decal::render(renderer);
+}
+
 void Player::onCollision()
 {
-	dead = true; // TODO: change this!
+	invisible = true;
 }

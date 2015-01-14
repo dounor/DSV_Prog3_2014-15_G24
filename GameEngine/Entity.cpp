@@ -16,6 +16,7 @@ Entity::~Entity()
 	}
 }
 
+// Add an action to this entity
 void Entity::addAction(Action* action) 
 {
 	action->setParentEntity(this);
@@ -49,11 +50,14 @@ void Entity::update(int delta)
 
 	PhysicalSprite::update(delta);
 }
+
 void Entity::render(SDL_Renderer* renderer)
 {
+	// Render the current action
 	if (!actionList.empty())
 		actionList.front()->render(renderer);
 	
+	// Render the sprite of the entity
 	PhysicalSprite::render(renderer);
 }
 

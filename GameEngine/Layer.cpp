@@ -61,7 +61,7 @@ void Layer::update(int delta)
 	}
 }
 
-// Rita samtliga objekt i lagret
+// Draw all objects within the layer
 void Layer::render(SDL_Renderer* renderer)
 {
 	for (auto it = physSprites.begin(); it != physSprites.end(); ++it)

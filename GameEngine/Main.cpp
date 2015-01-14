@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 
 	Entity* ent = new Entity(250, 400, 128, 128, engine->getResourceFactory()->getImage("angry.png"));
 
-
+	// Generate a mass of movement actions for the "super evil" monster
 	for (int i = 0; i < 10000; ++i)
 	{
 		Action* act = new Action(200);

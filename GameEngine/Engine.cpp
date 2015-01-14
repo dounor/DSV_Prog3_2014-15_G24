@@ -50,6 +50,7 @@ Engine::Engine(std::string gameName, int updatesPerSec) : updateInterval(1000.0 
 	delta = 0;
 }
 
+// Add a layer to the engine
 void Engine::addLayer(Layer* layer)
 {
 	layers.push_back(layer);

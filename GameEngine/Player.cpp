@@ -23,6 +23,7 @@ void Player::update(int delta)
 	// Update score
 	if (invisible != true)
 		score += delta;
+
 	// Check all movement bools and set the velocity to the
 	// direction held
 	if (leftHeld)
@@ -116,5 +117,6 @@ void Player::render(SDL_Renderer* renderer)
 
 void Player::onCollision()
 {
+	// If the player is hit, make him invisible
 	invisible = true;
 }

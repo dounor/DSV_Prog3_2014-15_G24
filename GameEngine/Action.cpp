@@ -1,5 +1,6 @@
 #include "Action.h"
 
+// How much damage a shot does
 const int DAMAGE_PER_SHOT = 50;
 
 Action::Action() : ended(false), health(1) {}
@@ -13,6 +14,7 @@ Action::~Action()
 	}
 }
 
+// Initiate all subActions connected to this action
 void Action::init()
 {
 	for (unsigned int i = 0; i < subActions.size(); ++i) {
@@ -20,12 +22,15 @@ void Action::init()
 	}
 }
 
+// Update all subActions connected to this action
 void Action::update(int delta)
 {
 	for (unsigned int i = 0; i < subActions.size(); ++i) {
 		subActions[i]->update(delta);
 	}
 }
+
+// Render all subActions connected to this action
 void Action::render(SDL_Renderer* renderer)
 {
 	for (unsigned int i = 0; i < subActions.size(); ++i) {
@@ -33,8 +38,10 @@ void Action::render(SDL_Renderer* renderer)
 	}
 }
 
+// Add a subAction to this action
 void Action::addSubAction(SubAction* subAction)
 {
+	// Set this Action to be the parent of the added subAction
 	subAction->setParentAction(this);
 	subActions.push_back(subAction);
 }
@@ -49,6 +56,7 @@ void Action::setParentEntity(Entity* ent)
 	parentEntity = ent;
 }
 
+// Check if this action has finished
 bool Action::hasEnded()
 {
 	return ended;

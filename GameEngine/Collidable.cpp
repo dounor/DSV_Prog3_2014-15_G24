@@ -38,6 +38,7 @@ bool Collidable::checkCollision(const SDL_Rect& otherRect)
 	return true;
 }
 
+// Update the position of the collision rectangle (if it is not shared with the PhysicalSprite)
 void Collidable::updateCollisionRect(const SDL_Rect& displayRect)
 {
 	if (isOwnRect == false) {

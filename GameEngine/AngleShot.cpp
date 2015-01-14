@@ -25,11 +25,15 @@ void AngleShot::update(int delta)
 
 	if (currentTime >= delay) {
 		const SDL_Rect& entRect = getParentAction().getParentEntity().getRect();
+		
+		// Create a new Physical Sprite that has a velocity pointed at the angle used when this object was created
 		PhysicalSprite* spr = new PhysicalSprite((entRect.x + entRect.w / 2), (entRect.y + entRect.h), bulletWidth, bulletHeight, bulletImage);
 		spr->setVelX(velX);
 		spr->setVelY(velY);
 
 		bulletLayer->addPhysSprite(spr);
+
+		// Reset the timer and wait until the next bullet is going to be shot
 		currentTime = 0;
 	}
 }
